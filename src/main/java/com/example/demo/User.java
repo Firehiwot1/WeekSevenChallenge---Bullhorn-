@@ -28,10 +28,14 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+   @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    public Set<Message> message;
 
     public User() {
 
@@ -68,10 +72,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder=
-                new BCryptPasswordEncoder();
-        this.password=passwordEncoder.encode(password);
-
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -112,5 +113,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Message> getMessage() {
+        return message;
+    }
+
+    public void setMessage(Set<Message> message) {
+        this.message = message;
     }
 }
