@@ -11,21 +11,22 @@ public class Message {
     private long id;
 
     @NotNull
-    @Size(min = 2)
-    private String postedDate;
-
-    @NotNull
-    @Size(min = 2)
-    private String postedBy;
-
-    @NotNull
-    @Size(min = 2, max = 15)
+    @Size(min=2, max=15)
     private String title;
 
     @NotNull
-    @Size(max = 60)
+    @Size(max=60)
     private String content;
 
+    @NotNull
+    @Size(min=2)
+    private String postedDate;
+
+    @NotNull
+    @Size(min=2)
+    private String postedBy;
+
+    private String pic;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -37,22 +38,6 @@ public class Message {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getPostedDate() {
-        return postedDate;
-    }
-
-    public void setPostedDate(String postedDate) {
-        this.postedDate = postedDate;
-    }
-
-    public String getPostedBy() {
-        return postedBy;
-    }
-
-    public void setPostedBy(String postedBy) {
-        this.postedBy = postedBy;
     }
 
     public String getTitle() {
@@ -71,6 +56,30 @@ public class Message {
         this.content = content;
     }
 
+    public String getPostedDate() {
+        return postedDate;
+    }
+
+    public void setPostedDate(String postedDate) {
+        this.postedDate = postedDate;
+    }
+
+    public String getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
     public User getUser() {
         return user;
     }
@@ -79,4 +88,3 @@ public class Message {
         this.user = user;
     }
 }
-

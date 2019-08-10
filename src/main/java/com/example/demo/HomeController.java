@@ -1,5 +1,4 @@
 package com.example.demo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
-
 @Controller
 public class HomeController {
 
     @Autowired
     MessageRepository messagesRepository;
+
 
     @Autowired
     UserService userService;
@@ -57,9 +56,40 @@ public class HomeController {
         return"messageform";
     }
 
-    @PostMapping("/processform")
-    public String processmessageform(@ModelAttribute Message message, @Valid @RequestParam("file")MultipartFile file, BindingResult result){
+//  @PostMapping("/process")
+//
+//  public String processForm(@Valid Course course, BindingResult result, Model model) {
+//    if (result.hasErrors()) {
+//      model.addAttribute("instructors", instructorRepository.findAll());
+//      return "courseform";
+//  public String processForm(@Valid Course course, BindingResult result){
+//    if(result.hasErrors()){
 
+//    }
+
+    //    message.setUser(userService.getUser());
+//    messagesRepository.save(message);
+//    return "redirect:/";
+//  }
+//
+    @PostMapping("/processform")
+    public String processmessageform(@ModelAttribute Message message, BindingResult result){
+//    if(result.hasErrors()){
+//      return "messageform";
+//    }
+//
+//    if (file.isEmpty()){
+//      return "redirect:/add";
+//    }
+//    try{
+//      Map uploadResult = cloudc.upload(file.getBytes(),
+//              ObjectUtils.asMap("resourcetype", "auto"));
+//      message.setPic(uploadResult.get("url").toString());
+//      messagesRepository.save(message);
+//    }catch(IOException e){
+//      e.printStackTrace();
+//      return "redirect:/add";
+//    }
         message.setUser(userService.getUser());
         messagesRepository.save(message);
         return "redirect:/";
@@ -79,5 +109,8 @@ public class HomeController {
         messagesRepository.deleteById(id);
         return "redirect:/";
     }
+
+
+
 
 }

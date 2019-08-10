@@ -2,9 +2,7 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 
 import java.util.Arrays;
 
@@ -19,12 +17,7 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     MessageRepository messagesRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-
     @Override
-
     public void run(String... strings) throws Exception{
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
@@ -44,32 +37,14 @@ public class DataLoader implements CommandLineRunner {
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
-        Message message = new Message();
-        message.setTitle("Hello");
-        message.setContent("Urgent");
-        message.setPostedDate("07/10/2019");
-        message.setPostedBy("Firehiwot");
+        // create a new course
 
-        messagesRepository.save(message);
-
-        message  = new Message();
-        message.setTitle("Good Morning");
-        message.setContent("Urgent");
-        message.setPostedDate("10/10/2019");
-        message.setPostedBy("Fre");
-
-        messagesRepository.save(message);
-
-        message  = new Message();
-        message.setTitle("Vacation");
-        message.setContent("Urgent");
-        message.setPostedDate("17/10/2019");
-        message.setPostedBy("Frey");
-
-        messagesRepository.save(message);
-
-
-
+//    Course course =new Course();
+//    course.setTitle("Java Web Developer");
+//    course.setInstructor("Dave Wolf");
+//    course.setDescription("Java Web Development");
+//    course.setCredit(3);
+//    courseRepository.save(course);
 
     }
 }

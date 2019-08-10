@@ -1,9 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.CustomUserDetails;
-import com.example.demo.User;
-import com.example.demo.UserRepository;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,7 +42,7 @@ public class SSUserDetailsService implements UserDetailsService {
     private Set<GrantedAuthority> getAuthorities(User appUser) {
         Set<GrantedAuthority> authorities = new HashSet<>();
 
-        for(com.example.demo.Role role : appUser.getRoles()){
+        for(Role role : appUser.getRoles()){
             GrantedAuthority grantedAuthority =
                     new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);
